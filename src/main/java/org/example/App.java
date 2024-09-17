@@ -6,6 +6,7 @@ import org.example.accounts.BankFactory;
 import org.example.accounts.MoneyTransferService;
 import org.example.accounts.exceptions.NoMoneyOnAccountException;
 import org.example.people.Owner;
+import org.example.accounts.StudentAccount;
 
 public class App {
     public void run() throws NoMoneyOnAccountException {
@@ -23,7 +24,10 @@ public class App {
         BankAccount account3 = bankFactory.createBankAccountWithRandom(50000,newOwner);
         accountDetailPrinter.printDetail(account3);
         MoneyTransferService moneyTransferService = new MoneyTransferService();
+        Owner studentOwner = ownerFactory.getNewOwner("Filip","Grafek",125);
 
-        moneyTransferService.transferMoneyBetweenAccounts(OriginalBankAccount, OriginalBankAccount2, 100);
+        StudentAccount studentAccount = new StudentAccount(8000,studentOwner,"666");
+        accountDetailPrinter.printDetail(studentAccount);
+        moneyTransferService.transferMoneyBetweenAccounts(OriginalBankAccount, OriginalBankAccount2, 500);
     }
 }

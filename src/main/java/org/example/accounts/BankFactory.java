@@ -9,6 +9,6 @@ public class BankFactory {
 
     public BankAccount createBankAccountWithRandom(double balance, Owner owner) {
         AccountNumberGenerator generator = new AccountNumberGenerator();
-        return new BankAccount(balance,owner, generator.accountNumber);
+        return new BankAccount(balance,owner, generator.RandomNumberGenerator());
     }
 }
