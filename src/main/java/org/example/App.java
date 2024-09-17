@@ -1,6 +1,8 @@
 package org.example;
-
+import org.example.print.AccountDetailPrinter;
 import org.example.accounts.BankAccount;
+import org.example.people.OwnerFactory;
+import org.example.accounts.BankFactory;
 import org.example.accounts.MoneyTransferService;
 import org.example.accounts.exceptions.NoMoneyOnAccountException;
 import org.example.people.Owner;
@@ -11,14 +13,17 @@ public class App {
     }
 
     void runBank() throws NoMoneyOnAccountException {
-        Owner owner1 = new Owner("Karel", "Jedna");
-        Owner owner2 = new Owner("Franta", "Dva");
-
-        BankAccount account1 = new BankAccount(600, owner1, "4651976");
-        BankAccount account2 = new BankAccount(1700, owner2, "9619651");
-
+        AccountDetailPrinter accountDetailPrinter = new AccountDetailPrinter();
+        OwnerFactory ownerFactory = new OwnerFactory();
+        BankFactory bankFactory = new BankFactory();
+        Owner owner = new Owner("Karel", "Jedna",123);
+        BankAccount OriginalBankAccount = new BankAccount(500,owner,"123");
+        BankAccount OriginalBankAccount2 = new BankAccount(1000.25,owner,"321");
+        Owner newOwner = ownerFactory.getNewOwner("Filip","Grafek",125);
+        BankAccount account3 = bankFactory.createBankAccountWithRandom(50000,newOwner);
+        accountDetailPrinter.printDetail(account3);
         MoneyTransferService moneyTransferService = new MoneyTransferService();
 
-        moneyTransferService.transferMoneyBetweenAccounts(account1, account2, 100);
+        moneyTransferService.transferMoneyBetweenAccounts(OriginalBankAccount, OriginalBankAccount2, 100);
     }
 }
