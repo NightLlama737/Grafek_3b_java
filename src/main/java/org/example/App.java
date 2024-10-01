@@ -1,5 +1,6 @@
 package org.example;
 
+import com.google.inject.Inject;
 import org.example.accounts.*;
 import org.example.accounts.exceptions.NoMoneyOnAccountException;
 import org.example.people.Owner;
@@ -13,10 +14,12 @@ public class App {
     public void run() throws NoMoneyOnAccountException {
         runBank();
     }
+@Inject
+private DIContainer serviceContainer;
 
     void runBank() throws NoMoneyOnAccountException {
+        AccountDetailPrinter printer = new AccountDetailPrinter();
         //services
-        DIContainer serviceContainer = new DIContainer();
 
         //DAOs
         Owner owner1 = serviceContainer.getOwnerFactory().createOwner("Pepa", "Svacina", "485174865");
@@ -24,7 +27,7 @@ public class App {
         BankAccount account1 = serviceContainer.getBankAccountFactory().createBankAccount(600, owner1);
         BankAccount account2 = serviceContainer.getBankAccountFactory().createStudentBankAccount(1700, owner2);
         BankAccount account3 = serviceContainer.getBankAccountFactory().createSavingBankAccount(500, owner1);
-
+        printer.printDetail(serviceContainer.getOwnerGsonSerializationService().SerializePerson(owner1));
 
         if(account2 instanceof StudentAccount){
             String expire = ((StudentAccount) account2).getStudentStudiesConfirmationExpire();
