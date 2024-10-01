@@ -2,33 +2,18 @@ package org.example.accounts;
 
 import org.example.people.Owner;
 
-public class StudentAccount {
-    private double balance;
-
-    private Owner owner;
-
-    private String accountNumber;
+public class StudentAccount extends BankAccount {
+    private String studentStudiesConfirmationExpire;
 
     public StudentAccount(double balance, Owner owner, String accountNumber) {
-        this.balance = balance;
-        this.owner = owner;
-        this.accountNumber = accountNumber;
-
+        super(balance, owner, accountNumber);
+        this.studentStudiesConfirmationExpire = null;
     }
-
-    public double getBalance() {
-        return balance;
+    public StudentAccount(double balance, Owner owner, String accountNumber, String studentStudiesConfirmationExpire) {
+        super(balance, owner, accountNumber);
+        this.studentStudiesConfirmationExpire = studentStudiesConfirmationExpire;
     }
-
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public String getStudentStudiesConfirmationExpire(){
+        return studentStudiesConfirmationExpire;
     }
 }

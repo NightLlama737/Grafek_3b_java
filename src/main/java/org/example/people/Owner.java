@@ -3,9 +3,9 @@ package org.example.people;
 public class Owner {
     public String firstname;
     public String lastname;
-    public int personalId;
+    public String personalId;
 
-    public Owner(String firstname, String lastname,int personalId) {
+    public Owner(String firstname, String lastname,String personalId) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.personalId = personalId;
