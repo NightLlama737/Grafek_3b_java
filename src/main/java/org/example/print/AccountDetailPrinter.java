@@ -1,10 +1,10 @@
 package org.example.print;
 
-import org.example.DIContainer;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import org.example.accounts.BankAccount;
 import org.example.accounts.StudentAccount;
-import org.example.people.Owner;
-
+@Singleton
 public class AccountDetailPrinter {
     public void printDetail(BankAccount bankAccount) {
         System.out.printf("Account number '%s' owned by '%s %s', has currently balance of %.2f.\n", bankAccount.getAccountNumber(),bankAccount.getOwner().getFirstname(), bankAccount.getOwner().getLastname(), bankAccount.getBalance());
