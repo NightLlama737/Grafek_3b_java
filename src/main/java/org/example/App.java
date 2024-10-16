@@ -23,6 +23,10 @@ public class App {
     private AccountDetailPrinter accountDetailPrinter;
     @Inject
     private BankCardFactory bankCardFactory;
+    @Inject
+    private ATMService atmService;
+    @Inject
+    private BankAccountFacade bankAccountFacade;
     public void run() throws NoMoneyOnAccountException {
         runBank();
     }
@@ -35,9 +39,7 @@ public class App {
         BankAccount account1 = this.bankAccountFactory.createBankAccount(600, owner1);
         BankAccount account2 = this.bankAccountFactory.createStudentBankAccount(1700, owner2);
         BankAccount account3 = this.bankAccountFactory.createSavingBankAccount(500, owner1);
-        this.accountDetailPrinter.printDetail(this.ownerGsonSerializationService.SerializePerson(owner1));
-        BankCard card = bankCardFactory.createBankCard(account1);
-        account1.AddCard(card);
+        BankAccount account4 = bankAccountFacade.createBankAccount(owner2, 670);
         if(account2 instanceof StudentAccount){
             String expire = ((StudentAccount) account2).getStudentStudiesConfirmationExpire();
             System.out.println(expire);
@@ -49,6 +51,6 @@ public class App {
 
         this.moneyTransferService.transferMoneyBetweenAccounts(account1, account2, 100);
         this.moneyTransferService.depositMoney(account3, 450);
-
+        atmService.withdrawMoney(account4.getLastCard().getCardNumber(), 350);
     }
 }

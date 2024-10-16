@@ -34,9 +34,10 @@ public class BankAccount {
         return accountNumber;
     }
 
-    public String GetCardNumber(String cardNumber) {
-        return cards.get(cardNumber).getCardNumber();
+    public String getCardNumber(BankCard bankCard){
+        return bankCard.getCardNumber();
     }
+
 
     public void setBalance(double balance) {
         this.balance = balance;
@@ -47,5 +48,15 @@ public class BankAccount {
     public void AddCard(BankCard card) {
         this.cards.put(card.getCardNumber(), card);
     }
+
+    public BankCard getLastCard(){
+        BankCard bankCard = null;
+        for(Map.Entry<String, BankCard> entry : cards.entrySet()){
+            bankCard = entry.getValue();
+        }
+        return bankCard;
+    }
+
+
 
 }
