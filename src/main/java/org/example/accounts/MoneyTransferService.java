@@ -52,4 +52,25 @@ public class MoneyTransferService {
         this.accountDetailPrinter.printDetail(from);
         this.accountDetailPrinter.printDetail(to);
     }
+
+    public void transferMoneyToInvestments(InvestingAccount from){
+        int countPercent = 0;
+        for (Share share : from.getInvestments().values()) {
+            countPercent += share.getPart();
+        }
+
+        if(countPercent == 100){
+            double balance = from.getBalance();
+
+            for (Share share : from.getInvestments().values()) {
+                double investBalance = share.getBalance();
+                double percentOfMoney = (balance/100)*share.getPart();
+                investBalance += percentOfMoney;
+                share.setBalance(investBalance);
+                from.setBalance(from.getBalance()-percentOfMoney);
+                System.out.println(share.getBalance());
+                System.out.println(from.getBalance());
+            }
+        }
+    }
 }

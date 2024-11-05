@@ -5,6 +5,8 @@ import com.google.inject.Singleton;
 import org.example.Cards.BankCard;
 import org.example.people.Owner;
 
+import java.util.Map;
+
 public class BankFactory {
     private BankAccountNumberValidator accValidator;
     @Inject
@@ -42,4 +44,10 @@ public class BankFactory {
         String bankAccountNumber = this.bankAccountNumberGenerator.generateBankAccountNumber();
         return new SavingAccount(balance, owner, bankAccountNumber);
     }
+    public InvestingAccount createInvestingBankAccount(double balance, Owner owner, Map<String,Share> investments){
+        String bankAccountNumber = this.bankAccountNumberGenerator.generateBankAccountNumber();
+
+        return new InvestingAccount(balance, owner,investments, bankAccountNumber);
+    }
+
 }

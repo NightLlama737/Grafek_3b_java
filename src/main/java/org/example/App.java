@@ -29,6 +29,8 @@ public class App {
     private BankAccountFacade bankAccountFacade;
     @Inject
     private InterestingService interestingService;
+    @Inject
+    private  DividentService dividentService;
     public void run() throws NoMoneyOnAccountException {
         runBank();
     }
@@ -55,5 +57,8 @@ public class App {
         this.moneyTransferService.depositMoney(account4, 450);
         atmService.withdrawMoney(account4.getLastCard().getCardNumber(), 350);
         this.interestingService.interestAllAccounts();
+        BankAccount investingAccount = this.bankAccountFacade.createInvestingAccount(owner1,100000);
+        this.moneyTransferService.transferMoneyToInvestments((InvestingAccount) investingAccount);
+        this.dividentService.addDividentToBalance((InvestingAccount)investingAccount);
     }
 }
