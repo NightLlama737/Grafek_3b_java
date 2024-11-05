@@ -27,6 +27,8 @@ public class App {
     private ATMService atmService;
     @Inject
     private BankAccountFacade bankAccountFacade;
+    @Inject
+    private InterestingService interestingService;
     public void run() throws NoMoneyOnAccountException {
         runBank();
     }
@@ -36,10 +38,10 @@ public class App {
 
         Owner owner1 = this.ownerFactory.createOwner("Pepa", "Svacina", "485174865");
         Owner owner2 = this.ownerFactory.createOwner("Franta", "Nevida", "8946519846");
-        BankAccount account1 = this.bankAccountFactory.createBankAccount(600, owner1);
-        BankAccount account2 = this.bankAccountFactory.createStudentBankAccount(1700, owner2);
-        BankAccount account3 = this.bankAccountFactory.createSavingBankAccount(500, owner1);
-        BankAccount account4 = bankAccountFacade.createBankAccount(owner2, 670);
+        BankAccount account1 = this.bankAccountFacade.createBankAccount(owner1,25000);
+        BankAccount account2 = this.bankAccountFacade.createStudentBankAccount(owner2,15000);
+        BankAccount account3 = this.bankAccountFacade.createSavingBankAccount(owner1,85250);
+        BankAccount account4 = this.bankAccountFacade.createBankAccount(owner2, 670);
         if(account2 instanceof StudentAccount){
             String expire = ((StudentAccount) account2).getStudentStudiesConfirmationExpire();
             System.out.println(expire);
@@ -50,7 +52,8 @@ public class App {
         }
 
         this.moneyTransferService.transferMoneyBetweenAccounts(account1, account2, 100);
-        this.moneyTransferService.depositMoney(account3, 450);
+        this.moneyTransferService.depositMoney(account4, 450);
         atmService.withdrawMoney(account4.getLastCard().getCardNumber(), 350);
+        this.interestingService.interestAllAccounts();
     }
 }

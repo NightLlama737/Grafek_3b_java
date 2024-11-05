@@ -10,7 +10,6 @@ import java.util.Map;
 public class BankAccount {
 
     private double balance;
-
     private Owner owner;
 
     private String accountNumber;
@@ -19,6 +18,7 @@ public class BankAccount {
     public BankAccount(double balance, Owner owner, String accountNumber) {
         this.balance = balance;
         this.owner = owner;
+
         this.accountNumber = accountNumber;
     }
 
