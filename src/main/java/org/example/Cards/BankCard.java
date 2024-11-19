@@ -16,4 +16,8 @@ public class BankCard {
     public String getCardNumber() {
         return cardNumber;
     }
+
+    public String getPin() {
+        return pin;
+    }
 }
