@@ -1,7 +1,9 @@
 package org.example.Observer;
 
-import java.util.ArrayList;
+import jakarta.inject.Singleton;
 
+import java.util.ArrayList;
+@Singleton
 public class MyTopic implements Subject {
     private String message;
     private boolean changed;
@@ -11,7 +13,11 @@ public class MyTopic implements Subject {
     public MyTopic() {}
 
     public void register (Observer observer) {
-        observers.add(observer);
+        if (!observers.contains(observer)) {
+            observer.setSubject(this);
+            observers.add(observer);
+        }
+
     }
     public void unregister (Observer observer) {
         observers.remove(observer);
@@ -22,7 +28,11 @@ public class MyTopic implements Subject {
         }
     }
     public Object getUpdate (Observer observer) {
-        return MUTEX;
+        return message;
     }
-    public void postMessage (String message) {}
+    public void postMessage (String message) {
+        this.message = message;
+        changed = true;
+        notifyObservers();
+    }
 }
