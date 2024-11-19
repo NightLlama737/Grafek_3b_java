@@ -12,8 +12,12 @@ public class TestObserver {
         Observer observer3 = new MyTopicSubscriber("Ondra");
         myTopic.register(observer1);
         myTopic.register(observer1);
+        myTopic.register(observer2);
         myTopic.register(observer3);
         myTopic.postMessage("Byl jsi registrován");
+        myTopic.postMessage("Byl jsi registrován");
+
+
 
 
     }

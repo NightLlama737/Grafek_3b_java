@@ -20,9 +20,17 @@ public class MyTopic implements Subject {
 
     }
     public void unregister (Observer observer) {
-        observers.remove(observer);
+        if (observers.contains(observer)) {
+            observers.remove(observer);
+            observer.setSubject(null);
+
+        }
     }
     public void notifyObservers () {
+        if (!changed) {
+            return;
+        }
+        changed = false;
         for (Observer observer : observers) {
             observer.update();
         }
