@@ -41,8 +41,8 @@ public class App {
 @Inject
 
     void runBank() throws NoMoneyOnAccountException {
-        String fileName = "accounts.json";
-        File file = new File(fileName);
+        String path = BankSerializationService.pathFile;
+        File file = new File(path);
         if (!file.exists()) {
             Owner owner1 = this.ownerFactory.createOwner("Pepa", "Svacina", "485174865");
             Owner owner2 = this.ownerFactory.createOwner("Franta", "Nevida", "8946519846");
