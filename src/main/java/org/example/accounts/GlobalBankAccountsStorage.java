@@ -11,4 +11,11 @@ public class GlobalBankAccountsStorage {
     public void addBankAccount(BankAccount bankAccount) {
         bankAccounts.add(bankAccount);
     }
+    public List<BankAccount> getBankAccounts() {
+        return bankAccounts;
+    }
+
+    public void setBankAccounts(List<BankAccount> bankAccounts) {
+        this.bankAccounts = bankAccounts;
+    }
 }

@@ -11,6 +11,6 @@ public class BankCardFactory {
     @Inject
     private CardPincodeGenerator cardPincodeGenerator;
     public BankCard createBankCard(BankAccount bankAccount) {
-        return new BankCard(cardNumberGenerator.NumberGenerator(), cardPincodeGenerator.pinGenerator(), bankAccount);
+        return new BankCard(cardNumberGenerator.NumberGenerator(), cardPincodeGenerator.pinGenerator());
     }
 }
